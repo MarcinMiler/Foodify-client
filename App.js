@@ -1,25 +1,37 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, ScrollView, View } from 'react-native'
+import { Font } from 'expo'
+
+import TypeFood from './Components/TypeFood'
+import Navbar from './Components/Navbar'
 
 class App extends Component {
+
+  state = {
+    fontLoaded: false
+  }
+
+  async componentDidMount() {
+    await Font.loadAsync({
+      'icomoon': require('./resources/fonts/icomoon.ttf'),
+      'montserratMedium': require('./resources/fonts/montserratMedium.ttf'),
+      'montserratRegular': require('./resources/fonts/montserratRegular.ttf'),
+    })
+    this.setState({fontLoaded: true})
+  }
+
   render() {
+    if(!this.state.fontLoaded) { return null }
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
+      <View>
+      <Navbar />
+      <ScrollView>
+        
+        <TypeFood />
+      </ScrollView>
       </View>
     )
   }
 }
 
 export default App
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-})
