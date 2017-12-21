@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, Text, ScrollView, View } from 'react-native'
 import { Font } from 'expo'
 
-import TypeFood from './Components/TypeFood'
-import Navbar from './Components/Navbar'
+import AppNav from './Components/AppNavigator'
 
 class App extends Component {
 
@@ -22,14 +21,8 @@ class App extends Component {
 
   render() {
     if(!this.state.fontLoaded) { return null }
-    return (
-      <View>
-      <Navbar />
-      <ScrollView>
-        
-        <TypeFood />
-      </ScrollView>
-      </View>
+    return(
+        <AppNav />
     )
   }
 }
